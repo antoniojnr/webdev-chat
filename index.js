@@ -18,7 +18,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/consts.js', function(req, res){
-    res.send("var API='" + process.env.HOST + ":" + process.env.PORT + "'");
+    res.send("var API='" + process.env.HOST + "'");
 });
 
 app.get('/test', function(req, res) {
@@ -49,6 +49,6 @@ app.post('/chat', function(req, res) {
 
 // The lines below set up this application to run on Heroku
 
-var server = app.listen(process.env.PORT, function() {
+var server = app.listen(process.env.PORT || 3000, function() {
   console.log('Server running on port: ' + server.address().port)
 })
