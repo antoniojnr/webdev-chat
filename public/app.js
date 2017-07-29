@@ -2,7 +2,6 @@ angular.module('chat', [])
   .controller('MainController', MainController)
 
 function MainController($scope, $http, $location, $anchorScroll) {
-  const API = 'http://localhost:3000'
   var self = this
   self.lines = []
 

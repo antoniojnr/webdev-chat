@@ -1,6 +1,7 @@
 var express     = require('express')
 var sse         = require('./sse')
 var bodyParser  = require('body-parser')
+var jade        = require('jade')
 var app         = express()
 var connections = [];
 
@@ -14,6 +15,10 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
+});
+
+app.get('/consts.js', function(req, res){
+    res.send("var API='" + process.env.HOST + ":" + process.env.PORT + "'");
 });
 
 app.get('/stream', function(req, res) {
