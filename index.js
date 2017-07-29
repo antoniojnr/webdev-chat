@@ -21,6 +21,10 @@ app.get('/consts.js', function(req, res){
     res.send("var API='" + process.env.HOST + ":" + process.env.PORT + "'");
 });
 
+app.get('/test', function(req, res) {
+  res.send("It's working")
+})
+
 app.get('/stream', function(req, res) {
   res.header("Content-Type", "text/event-stream");
   res.header("Cache-Control", "no-cache");
@@ -45,6 +49,6 @@ app.post('/chat', function(req, res) {
 
 // The lines below set up this application to run on Heroku
 
-app.listen(process.env.PORT, function() {
-  console.log('Server running on port: ' + process.env.PORT)
+var server = app.listen(process.env.PORT, function() {
+  console.log('Server running on port: ' + server.address().port)
 })
