@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html ng-app="chat">
+  <head>
+    <meta charset="utf-8">
+    <title>Chat</title>
+    <script src="/scripts/jquery/dist/jquery.min.js"></script>
+    <script src="/scripts/angular/angular.min.js"></script>
+    <script src="/scripts/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="/scripts/bootstrap/dist/css/bootstrap.min.css">
+  </head>
+  <body ng-controller="MainController as c" ng-init= "c.connect()">
+    <div class="container">
+      <div class="row">
+        <div class="bg-primary col-md-6 col-md-offset-3">
+          <h3>Chat da disciplina</h3>
+          <p>Não use linguagem desrespeitosa.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="chat-header bg-primary col-md-6 col-md-offset-3">
+          <div class="row">
+            <div class="col-sm-3 col-md-offset-9">
+              <input type="text" class="form-control input-sm"
+                name="" value="" ng-model="c.nickname"
+                placeholder="Apelido">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="chat-container bg-info col-md-6 col-md-offset-3">
+          <div class="row chat-line" ng-repeat="l in c.lines">
+            <div class="col-md-2">
+              <b>{{ l.user }}</b>
+            </div>
+            <div class="col-md-10">
+             {{ l.line }}
+            </div>
+          </div>
+          <span id=bottom></span>
+        </div>
+      </div>
+    </div>
+    <div class="navbar navbar-fixed-bottom">
+      <div class="container">
+        <div class="col-md-6 col-md-offset-3">
+          <form class="form-horizontal" ng-submit="c.send()">
+            <input type="text" class="form-control"
+              name="line" ng-model="c.line" value=""
+              placeholder="Pressione Enter para enviar...">
+          </form>
+        </div>
+      </div>
+    </div>
+    <style media="screen">
+      body {
+        margin-top: 30px;
+        margin-bottom: 100px;
+      }
+
+      .chat-header {
+        padding: 5px 10px 10px 10px;
+      }
+
+      .chat-container {
+        padding-top: 10px;
+      }
+
+      .chat-line {
+        padding: 0px 10px 5px 10px;
+      }
+    </style>
+  </body>
+</html>
