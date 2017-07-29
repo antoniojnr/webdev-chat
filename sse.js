@@ -1,6 +1,5 @@
 module.exports = function (req, res, next) {
   res.sseSetup = function() {
-    console.log("WTF?");
     res.set({
         "Content-Type": "text/event-stream",
         "Cache-Control": "no-cache",

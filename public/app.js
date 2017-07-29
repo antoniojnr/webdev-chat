@@ -2,11 +2,12 @@ angular.module('chat', [])
   .controller('MainController', MainController)
 
 function MainController($scope, $http, $location, $anchorScroll) {
+  const API = 'http://localhost:3000'
   var self = this
   self.lines = []
 
   self.connect = function() {
-		var source = new EventSource('http://localhost:3000/stream')
+		var source = new EventSource(API + '/stream')
   	source.addEventListener('message',
 	  	function(event) {
 	  		$scope.$apply(function () {
@@ -17,7 +18,7 @@ function MainController($scope, $http, $location, $anchorScroll) {
   }
 
   self.send = function() {
-    $http.post('http://localhost:3000/chat', {
+    $http.post(API + '/chat', {
       line: self.line,
       user: self.nickname
     });
@@ -26,11 +27,7 @@ function MainController($scope, $http, $location, $anchorScroll) {
   }
 
   self.gotoBottom = function() {
-      // set the location.hash to the id of
-      // the element you wish to scroll to.
-      $location.hash('bottom');
-
-      // call $anchorScroll()
-      $anchorScroll();
-    };
+    $location.hash('bottom');
+    $anchorScroll();
+  };
 }

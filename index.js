@@ -32,16 +32,6 @@ app.post('/chat', function(req, res) {
 })
 
 app.listen(3000, '0.0.0.0', function() {
-  console.log('server running...')
+  console.log('Server running...')
+  console.log('You should be able to access this application within your LAN.')
 })
-
-// function initializeSSE(req, res) {
-//     res.set({
-//         "Content-Type": "text/event-stream",
-//         "Cache-Control": "no-cache",
-//         "Connection": "keep-alive",
-//         "Access-Control-Allow-Origin": "*"
-//     });
-//
-//     res.write("retry: 10000\n\n");
-// }
