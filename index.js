@@ -31,7 +31,15 @@ app.post('/chat', function(req, res) {
   res.json({ success: true })
 })
 
-app.listen(3000, '0.0.0.0', function() {
-  console.log('Server running...')
-  console.log('You should be able to access this application within your LAN.')
+// Uncomment this if you're running this application in your computer
+//
+// app.listen(3000, '0.0.0.0', function() {
+//   console.log('Server running...')
+//   console.log('You should be able to access this application within your LAN.')
+// })
+
+// The lines below set up this application to run on Heroku
+
+app.listen(process.env.PORT, function() {
+  console.log('Server running on port: ' + process.env.PORT)
 })
