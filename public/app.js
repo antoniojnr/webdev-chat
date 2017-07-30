@@ -20,9 +20,12 @@ function MainController($scope, $http, $location, $anchorScroll) {
     $http.post(API + '/chat', {
       line: self.line,
       user: self.nickname
+    }).then(function(res) {
+      self.gotoBottom()
+      self.line = ""
+    }, function(err) {
+      console.log(err)
     });
-    self.gotoBottom();
-    self.line = "";
   }
 
   self.gotoBottom = function() {
