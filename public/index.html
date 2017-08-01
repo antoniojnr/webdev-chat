@@ -2,6 +2,8 @@
 <html ng-app="chat">
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Chat</title>
     <script src="/consts.js"></script>
     <script src="/scripts/jquery/dist/jquery.min.js"></script>
@@ -10,18 +12,18 @@
     <script src="app.js"></script>
     <link rel="stylesheet" href="/scripts/bootstrap/dist/css/bootstrap.min.css">
   </head>
-  <body ng-controller="MainController as c" ng-init= "c.connect()">
-    <div class="container">
+  <body ng-controller="MainController as c" ng-init= "c.connect()" ng-cloak>
+    <div class="container-fluid navbar-fixed-top">
       <div class="row">
-        <div class="bg-primary col-md-6 col-md-offset-3">
+        <div class="chat-header bg-primary col-md-12">
           <h3>Chat da disciplina</h3>
           <p>Não use linguagem desrespeitosa.</p>
         </div>
       </div>
       <div class="row">
-        <div class="chat-header bg-primary col-md-6 col-md-offset-3">
+        <div class="bg-primary chat-header col-md-12">
           <div class="row">
-            <div class="col-sm-3 col-md-offset-9">
+            <div class="col-sm-2 col-sm-offset-10">
               <input type="text" class="form-control input-sm"
                 name="" value="" ng-model="c.nickname"
                 placeholder="Apelido">
@@ -29,14 +31,19 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="container-fluid chat-container">
       <div class="row">
-        <div class="chat-container bg-info col-md-6 col-md-offset-3">
+        <div class="bg-info col-md-8 col-md-offset-2">
           <div class="row chat-line" ng-repeat="l in c.lines">
             <div class="col-md-2">
               <b>{{ l.user }}</b>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-6">
              {{ l.line }}
+            </div>
+            <div class="col-md-4 ip hidden">
+              {{ l.ip }}
             </div>
           </div>
           <span id=bottom></span>
@@ -44,19 +51,25 @@
       </div>
     </div>
     <div class="navbar navbar-fixed-bottom">
-      <div class="container">
-        <div class="col-md-6 col-md-offset-3">
+      <div class="container-fluid bg-primary chat-input">
+        <div class="col-md-12">
           <form class="form-horizontal" ng-submit="c.send()">
-            <input type="text" class="form-control"
-              name="line" ng-model="c.line" value=""
-              placeholder="Pressione Enter para enviar...">
+            <div class="form-group">
+              <div class="col-md-10 col-xs-9">
+                <input type="text" class="form-control"
+                  name="line" ng-model="c.line" value=""
+                  placeholder="Pressione Enter para enviar...">
+              </div>
+              <div class="col-md-2 col-xs-2">
+                <button type="submit" name="button" class="btn btn-info">Enviar</button>
+              </div>
+            </div>
           </form>
         </div>
       </div>
     </div>
     <style media="screen">
       body {
-        margin-top: 30px;
         margin-bottom: 100px;
       }
 
@@ -65,11 +78,16 @@
       }
 
       .chat-container {
-        padding-top: 10px;
+        padding-top: 146px;
       }
 
       .chat-line {
-        padding: 0px 10px 5px 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
+
+      .chat-input {
+        padding: 10px 10px 0px 10px;
       }
     </style>
   </body>

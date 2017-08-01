@@ -11,9 +11,13 @@ function MainController($scope, $http, $location, $anchorScroll) {
 	  	function(event) {
 	  		$scope.$apply(function () {
           self.lines.push(JSON.parse(event.data))
+          self.gotoBottom();
         })
 			}, false
     )
+    source.onerror = function(event) {
+      console.log('An error has occurred.');
+    }
   }
 
   self.send = function() {
@@ -32,4 +36,8 @@ function MainController($scope, $http, $location, $anchorScroll) {
     $location.hash('bottom');
     $anchorScroll();
   };
+}
+
+function showIps() {
+  $(".ip").toggleClass('hidden');
 }

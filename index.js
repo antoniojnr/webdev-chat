@@ -35,8 +35,10 @@ app.get('/stream', function(req, res) {
 
 app.post('/chat', function(req, res) {
   for(var i = 0; i < connections.length; i++) {
-    connections[i].sseSend({ user: req.body.user, line: req.body.line });
+    var username = req.body.user || 'Desconhecido';
+    connections[i].sseSend({ user: username, line: req.body.line, ip: req.ip });
   }
+
   res.json({ success: true })
 })
 
